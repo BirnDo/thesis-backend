@@ -12,5 +12,7 @@ class ChargingConfigService {
     private lateinit var chargingConfigRepository: ChargingConfigRepository
 
     fun findById(configId: String) = chargingConfigRepository.findByConfigId(configId)
-    fun persist(config: ChargingConfig) = chargingConfigRepository.persist(config)
+    fun persist(config: ChargingConfig) = chargingConfigRepository.persistOrUpdate(config)
+    fun findAll(): List<ChargingConfig> =
+        chargingConfigRepository.findAll().list()
 }

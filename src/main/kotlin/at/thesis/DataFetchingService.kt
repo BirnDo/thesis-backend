@@ -1,16 +1,14 @@
 package at.thesis
 
-import at.thesis.model.Forecast
 import at.thesis.repository.ChargingConfigRepository
 import at.thesis.repository.PVDimensionsRepository
 import at.thesis.service.ForecastService
-import io.quarkus.logging.Log
-import io.quarkus.scheduler.Scheduled
+import io.quarkus.runtime.Startup
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.inject.Inject
-import org.bson.types.ObjectId
 
 @ApplicationScoped
+@Startup
 class DataFetchingService {
     @Inject
     private lateinit var chargingConfigRepository: ChargingConfigRepository
@@ -21,8 +19,7 @@ class DataFetchingService {
     @Inject
     private lateinit var forecastService: ForecastService
 
-    @Scheduled(cron = "0 0 0/6 * * ?")
-    fun fetchProductionData() {
+    /*fun fetchProductionData() {
         val configs = chargingConfigRepository.findAll().list()
 
         configs.forEach {
@@ -39,5 +36,5 @@ class DataFetchingService {
                 }
             }
         }
-    }
+    }*/
 }

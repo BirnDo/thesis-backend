@@ -19,10 +19,18 @@ class ForecastService {
         pvParts.forEach {
             Log.info("getting Forecast for $it at $location")
         }
+
+        val fullProduction = pvParts.map { it.peakPower }.reduce(Double::plus)
+
         var date = LocalDateTime.now().plusHours(1)
         val forecastItems = mutableListOf<ForecastItem>()
-        for (i in 1..12) {
-            val forecastItem = ForecastItem(date, i.toDouble())
+        for (i in 1..6) {
+            val forecastItem = ForecastItem(date, (i.toDouble() / 10) * fullProduction * 1000)
+            forecastItems.add(forecastItem)
+            date = date.plusHours(1)
+        }
+        for (i in 6.downTo(1)) {
+            val forecastItem = ForecastItem(date, (i.toDouble() / 10) * fullProduction * 1000)
             forecastItems.add(forecastItem)
             date = date.plusHours(1)
         }

@@ -1,19 +1,19 @@
 package at.thesis
 
+import at.thesis.model.TransactionConfig
 import at.thesis.service.ChargingProfileService
 import jakarta.inject.Inject
-import jakarta.ws.rs.GET
+import jakarta.ws.rs.POST
 import jakarta.ws.rs.Path
-import jakarta.ws.rs.PathParam
+import org.jboss.resteasy.reactive.RestPath
 
 @Path("/profile")
 class ChargingProfileController {
     @Inject
     private lateinit var chargingProfileService: ChargingProfileService
 
-    @GET
+    @POST
     @Path("/{configId}")
-    fun generateProfile(@PathParam("configId") configId: String) =
-        chargingProfileService.generateChargingProfile(configId)
-
+    fun generateProfile(@RestPath("configId") configId: String, transactionConfig: TransactionConfig) =
+        chargingProfileService.generateChargingProfile(configId, transactionConfig, 3) //Hard coded for now
 }

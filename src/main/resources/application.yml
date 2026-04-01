@@ -1,12 +1,10 @@
-greeting:
-  message: "hello"
-
 quarkus:
   http:
     cors:
       enabled: true
       origins:
         - "http://localhost:4200"
+        - "http://localhost:50963"
   mongodb:
     connection-string: mongodb://localhost:27017
     database: thesis

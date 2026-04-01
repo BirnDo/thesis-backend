@@ -11,6 +11,6 @@ class PvDimensionsService {
     private lateinit var pvDimensionsRepository: PVDimensionsRepository
 
     fun findById(id: String) = pvDimensionsRepository.findByDimensionId(id)
-    fun persist(dimensions: PVDimensions) = pvDimensionsRepository.persist(dimensions)
+    fun persist(dimensions: PVDimensions) = pvDimensionsRepository.persistOrUpdate(dimensions)
 
 }

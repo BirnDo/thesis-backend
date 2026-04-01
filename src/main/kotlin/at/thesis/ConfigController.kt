@@ -11,8 +11,6 @@ import jakarta.ws.rs.POST
 import jakarta.ws.rs.Path
 import jakarta.ws.rs.PathParam
 import jakarta.ws.rs.core.MediaType
-import org.bson.types.ObjectId
-
 @Path("/config")
 class ConfigController {
 
@@ -21,6 +19,11 @@ class ConfigController {
 
     @Inject
     private lateinit var pvDimensionsService: PvDimensionsService
+
+    @GET
+    fun getConfigs(): List<ChargingConfig> {
+        return chargingConfigService.findAll()
+    }
 
     @GET
     @Path("/{id}")
